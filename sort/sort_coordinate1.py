@@ -5,52 +5,26 @@
 # 첫째 줄부터 N개의 줄에 점을 정렬한 결과를 출력한다.
 
 DOT_COUNT_SIZE = 100000
-DOT_UNDER_SIZE = -100000
-DOT_UPPER_SIZE = 100000
 
-def counting_sort(origin):
-    range_list = [0] * (max(origin) + 1)
-    sorted_list = [0,] 
-    
-    for i in range_list:
-        print(f"{i}")
-    for i in range(0, len(origin)):
-        range_list[origin[i]] += 1
-    for i in range(0, len(range_list)):
-        range_list[i+1] += range_list[i]
-    for i in range(len(origin)-1, -1, -1):
-        sorted_list[range_list[origin[i]]] = origin[i]
-        range_list[origin[i]] -= 1
-    return sorted_list
+num = []
 
-x = []
-y = []
-
-sorted_x = []
-sorted_y = []
-
+# 좌표 개수 입력
 while 1:
     dot_count = int(input(""))
     
     if dot_count >= 1 and dot_count <= DOT_COUNT_SIZE:
-        print(dot_count, type(dot_count))
+        break
     else:
         print("점의 개수 입력 범위가 잘못됐습니다. 다시 입력하세요.")
         continue
-    break
-
-for i in range(0, dot_count):
-    num1, num2 = map(int, input().split())
-    x.append(num1)
-    y.append(num2)
-
-for i in range(0, dot_count):
-    print(f"저장된 좌표: {x[i]} {y[i]}")
     
-sorted_x = counting_sort(x)
-sorted_y = counting_sort(y)
+# 좌표 입력 및 2차원 리스트 추가
+for i in range(1, dot_count+1):
+    [num1, num2] = map(int, input().split())
+    num.append([num1, num2])
 
-for i in range(0, dot_count):
-    print(f"정렬된 좌표: {sorted_x[i]} {sorted_y[i]}")
+# 결과값 출력
+for i in sorted(num):
+    print(f"{i[0]} {i[1]}")
 
 
